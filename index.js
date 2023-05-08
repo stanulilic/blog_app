@@ -1,11 +1,13 @@
 import express from "express";
 import connectDB from "./config/db.js";
+import ArticleRouter from "./routes/ArticleRouter.js";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api", ArticleRouter);
 
 connectDB();
 
