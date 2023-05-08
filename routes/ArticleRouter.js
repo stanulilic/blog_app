@@ -31,4 +31,17 @@ router.get("/articles/:id", async (request, response) => {
   }
 });
 
+router.patch("/articles/:id", async (request, response) => {
+  try {
+    const article = await ArticleModel.findByIdAndUpdate(
+      request.params.id,
+      request.body
+    );
+    await article.save();
+    response.send(article);
+  } catch (error) {
+    response.status(500).send({ error });
+  }
+});
+
 export default router;
