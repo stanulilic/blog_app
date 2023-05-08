@@ -13,4 +13,13 @@ router.post("/articles", async (request, response) => {
   }
 });
 
+router.get("/articles", async (request, response) => {
+  try {
+    const articles = await ArticleModel.find({});
+    response.send(articles);
+  } catch (error) {
+    response.status(500).send({ error });
+  }
+});
+
 export default router;
