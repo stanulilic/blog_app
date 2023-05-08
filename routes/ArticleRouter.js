@@ -22,4 +22,13 @@ router.get("/articles", async (request, response) => {
   }
 });
 
+router.get("/articles/:id", async (request, response) => {
+  try {
+    const article = await ArticleModel.findOne({ _id: request.params.id });
+    response.send(article);
+  } catch (error) {
+    response.status(500).send({ error });
+  }
+});
+
 export default router;
