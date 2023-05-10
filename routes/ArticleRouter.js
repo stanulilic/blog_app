@@ -47,7 +47,9 @@ router.patch("/articles/:id", async (request, response) => {
 router.delete("/articles/:id", async (request, response) => {
   try {
     const article = await ArticleModel.findByIdAndDelete(request.params.id);
-    if (!article) response.status(404).send("Item wasn't found");
+    if (!article) {
+      return response.status(404).send("Item wasn't found");
+    }
     response.status(204).send();
   } catch (error) {
     response.status(500).send({ error });
